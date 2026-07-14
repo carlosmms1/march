@@ -19,7 +19,6 @@ if command -v reflector &>/dev/null; then
         --protocol https \
         --save /etc/pacman.d/mirrorlist || true
 fi
-sed -i '/\[multilib\]/,/Include/ s/^#//' /etc/pacman.conf
 
 echo ">>> Updating packages metadata..."
 pacman -Syy

@@ -6,6 +6,10 @@ set -euo pipefail
 
 HOSTNAME="machine"
 
+echo ">>> Enabling multilib repository..."
+sed -i '/^#\[multilib\]/,/^#Include/ s/^#//' /etc/pacman.conf
+pacman -Syy
+
 echo ">>> Timezone and clock..."
 ln -sf "/usr/share/zoneinfo/America/Maceio" /etc/localtime
 hwclock --systohc

@@ -4,6 +4,8 @@ set -x #echo on
 
 set -euo pipefail
 
+source ./helpers.sh
+
 echo ">>> Updating packages metadata..."
 pacman -Syy
 
@@ -38,6 +40,3 @@ echo ">>> Installing extras..."
 pacman -Sy --noconfirm --needed \
     noto-fonts noto-fonts-emoji ttf-liberation \
     zsh htop
-
-# Helpers
-available() { command -v "${1:?}" >/dev/null; }
