@@ -12,9 +12,7 @@ pacman -S --noconfirm --needed \
     xorg-server xorg-xinit xorg-xrandr \
     wayland wayland-protocols egl-wayland qt6-wayland xorg-xwayland \
     mesa lib32-mesa \
-    vulkan-radeon lib32-vulkan-radeon \
-    libva-mesa-driver lib32-libva-mesa-driver \
-    mesa-vdpau lib32-mesa-vdpau
+    vulkan-radeon lib32-vulkan-radeon
 
 echo ">>> Installing KDE Plasma..."
 pacman -S --noconfirm --needed \
