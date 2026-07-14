@@ -4,6 +4,9 @@ set -x #echo on
 
 set -euo pipefail
 
+echo ">>> Updating packages metadata..."
+pacman -Syy
+
 echo ">>> Installing AMD graphic drivers (amdgpu) and Xorg + Wayland stacks..."
 # Xorg é mantido porque o Openbox (planejado para o futuro) é X11-only —
 # não existe versão Wayland dele. O Plasma funciona nos dois; SDDM oferece
