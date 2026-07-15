@@ -31,7 +31,7 @@ echo ">>> Installing browser (brave)..."
 if available pacman; then
     if pacman -Ss brave-browser_release >/dev/null 2>&1; then
         pacman -Sy --needed --noconfirm "brave-browser_release"
-    elif
+    else
         echo ">>> Skipping browser installation..."
     fi
 fi
