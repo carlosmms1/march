@@ -6,37 +6,49 @@ set -euo pipefail
 
 source "$(dirname $0)/helpers.sh"
 
-echo ">>> Updating packages metadata..."
-pacman -Syy
+if available yay; then
+    echo ">>> Updating packages metadata..."
+    yay -Syy
 
-echo ">>> Installing AMD graphic drivers (amdgpu) and Xorg + Wayland stacks..."
-# Xorg é mantido porque o Openbox (planejado para o futuro) é X11-only —
-# não existe versão Wayland dele. O Plasma funciona nos dois; SDDM oferece
-# a escolha da sessão (Plasma/X11, Plasma/Wayland) na tela de login.
-pacman -Sy --noconfirm --needed \
-    xorg-server xorg-xinit xorg-xrandr \
-    wayland wayland-protocols egl-wayland qt6-wayland xorg-xwayland \
-    mesa lib32-mesa \
-    vulkan-radeon lib32-vulkan-radeon
+    echo ">>> Installing AMD graphic drivers (amdgpu) and Xorg + Wayland stacks..."
+    # Xorg é mantido porque o Openbox (planejado para o futuro) é X11-only —
+    # não existe versão Wayland dele. O Plasma funciona nos dois; SDDM oferece
+    # a escolha da sessão (Plasma/X11, Plasma/Wayland) na tela de login.
+    yay -Syu --noconfirm --needed \
+        xorg-server xorg-xinit xorg-xrandr \
+        wayland wayland-protocols egl-wayland qt6-wayland xorg-xwayland \
+        mesa lib32-mesa \
+        vulkan-radeon lib32-vulkan-radeon
 
-echo ">>> Installing KDE Plasma..."
-pacman -Sy --noconfirm --needed \
-    plasma-meta konsole dolphin dolphin-plugins \
-    kate ark spectacle \
-    sddm plasma-nm plasma-pa power-profiles-daemon \
-    print-manager
+    echo ">>> Installing KDE Plasma..."
+    yay -Syu --noconfirm --needed \
+        plasma-meta konsole dolphin dolphin-plugins \
+        kate ark spectacle \
+        sddm plasma-nm plasma-pa power-profiles-daemon \
+        print-manager
 
-
-echo ">>> Installing browser (brave)..."
-if available pacman; then
-    if pacman -Ss brave-browser_release >/dev/null 2>&1; then
-        pacman -Sy --needed --noconfirm "brave-browser_release"
+    echo ">>> Installing browser (brave)..."
+    if yay -Ss brave-bin >/dev/null 2>&1; then
+        yay -Syu --needed --noconfirm brave-bin
     else
         echo ">>> Skipping browser installation..."
     fi
+
+    echo ">>> Installing extras..."
+    yay -Syu --noconfirm --needed \
+        noto-fonts noto-fonts-emoji ttf-liberation \
+        zsh htop
+else
+    echo ">>> Skipping softwares installation..."
 fi
 
-echo ">>> Installing extras..."
-pacman -Sy --noconfirm --needed \
-    noto-fonts noto-fonts-emoji ttf-liberation \
-    zsh htop
+
+
+
+
+
+
+
+
+
+
