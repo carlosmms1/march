@@ -4,7 +4,7 @@ set -x #echo on
 
 set -euo pipefail
 
-source ./helpers.sh
+source "$(dirname $0)/helpers.sh"
 
 echo ">>> Updating packages metadata..."
 pacman -Syy
