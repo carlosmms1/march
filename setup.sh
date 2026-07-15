@@ -13,7 +13,8 @@ echo ">>> Starting arch installation..."
 ( arch-chroot /mnt /root/04-user.sh )              |& tee 04-user.log
 ( arch-chroot /mnt /root/05-bootloader.sh )        |& tee 05-bootloader.log
 ( arch-chroot /mnt /root/06-zram.sh )              |& tee 06-zram.log
-( arch-chroot /mnt /root/07-softwares.sh )         |& tee 07-softwares.log
+( arch-chroot /mnt /root/07-setup_aur.sh )         |& tee 07-setup_aur.log
+( arch-chroot /mnt /root/08-softwares.sh )         |& tee 08-softwares.log
 ( arch-chroot /mnt /root/99-post_installation.sh ) |& tee 99-post_installation.log
 mkdir -p /mnt/home/cmms/setup-logs
 cp -v *.log /mnt/home/cmms/setup-logs/

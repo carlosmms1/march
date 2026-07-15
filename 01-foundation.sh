@@ -25,7 +25,7 @@ pacman -Syy
 
 echo ">>> Installing base system (pacstrap)..."
 pacstrap -K /mnt \
-    base base-devel linux linux-firmware linux-headers \
+    git base base-devel linux linux-firmware linux-headers \
     intel-ucode \
     networkmanager \
     grub efibootmgr \
